@@ -1,34 +1,17 @@
 # compostNYC
 
-Steps: 
-1. Obtain data for compost sites from NYC OpenData
-2. On CARTO, add data to the data warehouse > organization data. CARTO generates the schemas automatically and plots the data on the map
-3. Obtain NYC building data via PLUTO from Carto data warehouse > demo data.
+Phase 1: Data Collection
+• Obtain composite site location data from NYC OpenData. On CARTO, add data to the data warehouse > organization data. CARTO generates the schemas automatically and plots the data on the map.
+• Obtain NYC building data via PLUTO from Carto data warehouse > demo data.
 
-Example query:
-   ```
-   SELECT * 
-FROM `bigquery-public-data.geo_openstreetmap.planet_ways`
-WHERE 'building' IN (SELECT key FROM UNNEST(all_tags))
-AND ST_DWithin(bounding_area.geometry, planet_features.geometry, 0)  -- Adjust this to filter only buildings within NYC.
-```
+Phase 2: Spatial Analyses
 
-4. Import building data into CARTO
-5. Proximity Analysis in CARTO using CARTO's SQL panel
+• Determine which buildings are within 400m of a compost bin using "Intersect and aggregate" SQL analysis. This finds overlapping geometries between two different sources.  
 
-Query to colorcode buidings; if < 400m distance, color is green; else red
+Phase 3: Styling
 
-```
-UPDATE your_building_data_layer
-SET proximity_color = CASE 
-    WHEN EXISTS (
-        SELECT 1 FROM your_compost_data_layer
-        WHERE ST_DWithin(your_building_data_layer.geom, your_compost_data_layer.geom, 400)
-    ) THEN 'green'
-    ELSE 'red'
-END;
-```
+• Buildings that are within 400m of a compost bin are colored green; else red.
 
-6. Visualize the results!
+ 
 
    
