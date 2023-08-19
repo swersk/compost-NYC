@@ -10,7 +10,7 @@ CompostNYC is an immersive 3D visualization of building distance from a compost 
 ## Phase 1: Data Collection</br>
 • Obtain composite site location data from NYC OpenData. On CARTO, add data to the data warehouse > organization data. CARTO generates the schemas automatically and plots the data on the map. This is the first spatial layer.</br>
 
-*Compost Locations:*
+*Compost Locations in NYC:*
 ![compost_locations](https://github.com/swersk/compostNYC/assets/111617376/b6889b29-c2e5-46ce-9742-dc6d175005f5)
 
 
