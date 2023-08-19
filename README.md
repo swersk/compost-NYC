@@ -32,7 +32,7 @@ Buffer (400m) around each compost site:
 
 ## Phase 4: Ship!
  
-
+# Comments? Questions? Feedback? Message me! 
 
  
 
