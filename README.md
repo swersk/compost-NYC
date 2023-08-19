@@ -21,13 +21,13 @@ CompostNYC is an immersive 3D visualization of building distance from a compost 
 
 ## Phase 2: Spatial Analyses</br>
 
-• Goal: Determine which buildings are within 400m (5min walking) of a compost bin.</br>
-• Create a buffer of 400m around each compost bin.</br>
+• Goal: Determine which buildings are within 83m (1 street block), 250m (3min walking), and 400m (5min walking) of a compost bin.</br>
+• Create a buffer of 400m around each compost bin. This is later used to compare accuracy of the sql command results.</br>
 
 *Buffer (400m) around each compost site:*
 ![buffer_zone](https://github.com/swersk/compostNYC/assets/111617376/7b60c35f-eff1-48b3-8038-800a87f5883d)
 
-Write SQL commands to identify the buildings that are within 83m (1 block), 250m (3min walking), and 400m (5min walking). 
+Write SQL commands to identify the buildings that are within 83m, 250m, and 400m. 
 
 ```
 SELECT
@@ -45,7 +45,7 @@ WHERE
 *Buildings within 250m of a compost bin:*
 <img width="974" alt="Screenshot 2023-08-19 at 12 04 18 PM" src="https://github.com/swersk/compostNYC/assets/111617376/2202e3f4-b179-4d90-83d8-4b88fd94f939"></br>
 
-*Buildings within 83m (1 street block) of a compost bin:*
+*Buildings within 1 street block of a compost bin:*
 <img width="931" alt="Screenshot 2023-08-19 at 12 04 12 PM" src="https://github.com/swersk/compostNYC/assets/111617376/de124256-7421-45b1-9757-0f050f80f973"></br>
 
 
