@@ -27,6 +27,19 @@ CompostNYC is an immersive 3D visualization of buildings within 400m (5 min walk
 *Buffer (400m) around each compost site:*
 ![buffer_zone](https://github.com/swersk/compostNYC/assets/111617376/7b60c35f-eff1-48b3-8038-800a87f5883d)
 
+Write a SQL command to identify the buildings that are within the buffer zones. 
+
+```
+SELECT
+    b.* -- Select all columns from building_locations
+FROM
+    carto-demo-data.demo_tables.manhattan_pluto_data b,
+    carto-dw-ac-zp3r15zi.shared.CompostNYC c
+WHERE
+    ST_DWithin(b.geom, c.geom, 400);
+```
+
+
 ## Phase 3: Styling</br>
 
 • Buildings that are within 400m of a compost bin are colored green; else red.</br>
