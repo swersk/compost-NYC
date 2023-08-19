@@ -3,7 +3,7 @@
 Steps: 
 1. Obtain data for compost sites from NYC OpenData
 2. On CARTO, add data to the data warehouse > organization data. CARTO generates the schemas automatically and plots the data on the map
-3. Use Google's BigQuery to extract building data for New York City from the OpenStreetMap dataset
+3. Obtain NYC building data via PLUTO from Carto data warehouse > demo data.
 
 Example query:
    ```
