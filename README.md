@@ -39,10 +39,16 @@ WHERE
     ST_DWithin(b.geom, c.geom, 400);
 ```
 
-*Buildings within 83m, 250m, and 400m of a compost bin:*
-<img width="966" alt="Screenshot 2023-08-19 at 12 04 22 PM" src="https://github.com/swersk/compostNYC/assets/111617376/28b679b4-585f-4eaa-bf73-2568603d9365">
-<img width="931" alt="Screenshot 2023-08-19 at 12 04 12 PM" src="https://github.com/swersk/compostNYC/assets/111617376/de124256-7421-45b1-9757-0f050f80f973">
-<img width="974" alt="Screenshot 2023-08-19 at 12 04 18 PM" src="https://github.com/swersk/compostNYC/assets/111617376/2202e3f4-b179-4d90-83d8-4b88fd94f939">
+*Buildings within 400m of a compost bin:*
+<img width="966" alt="Screenshot 2023-08-19 at 12 04 22 PM" src="https://github.com/swersk/compostNYC/assets/111617376/28b679b4-585f-4eaa-bf73-2568603d9365"> </br>
+
+*Buildings within 250m of a compost bin:*
+<img width="974" alt="Screenshot 2023-08-19 at 12 04 18 PM" src="https://github.com/swersk/compostNYC/assets/111617376/2202e3f4-b179-4d90-83d8-4b88fd94f939"></br>
+
+*Buildings within 83m (1 street block) of a compost bin:*
+<img width="931" alt="Screenshot 2023-08-19 at 12 04 12 PM" src="https://github.com/swersk/compostNYC/assets/111617376/de124256-7421-45b1-9757-0f050f80f973"></br>
+
+
 
 
 
