@@ -54,7 +54,8 @@ WHERE
 
 ## Phase 3: Styling</br>
 
-• Color-code buildings at different distances.</br>
+• Color-code buildings on each layer.</br>
+• Integrate deck.gl and Google Maps for 3d photorealistic image
 
 ## Phase 4: Ship!
  
