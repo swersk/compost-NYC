@@ -1,6 +1,7 @@
 # CompostNYC: A Proximity-Based 3D Visualization
 
 🗽🌱 Welcome!📍🌎 </br>
+</br>
 CompostNYC is an immersive 3D visualization that maps the buildings within 400m (5 min walking) to a compost location in NYC. <br>
 
 ---
