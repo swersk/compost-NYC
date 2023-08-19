@@ -54,7 +54,7 @@ WHERE
 
 ## Phase 3: Styling</br>
 
-• Buildings that are within 400m of a compost bin are colored green; else red.</br>
+• Color-code buildings at different distances.</br>
 
 ## Phase 4: Ship!
  
