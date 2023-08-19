@@ -15,6 +15,7 @@ CompostNYC is an immersive 3D visualization of buildings within 400m (5 min walk
 
 
 • Obtain NYC building data via PLUTO from CARTO data warehouse > demo data.</br>
+
 *Buildings in NYC:*
 ![building_locations](https://github.com/swersk/compostNYC/assets/111617376/2b52d846-9d65-4a4e-9056-128f731c58e4)
 
