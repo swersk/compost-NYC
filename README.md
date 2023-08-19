@@ -2,7 +2,7 @@
 
 🗽🌱 Welcome!📍🌎 </br>
 </br>
-CompostNYC is an immersive 3D visualization of buildings within 400m (5 min walking) of a compost location in NYC. <br>
+CompostNYC is an immersive 3D visualization of building distance from a compost location in NYC. <br>
 
 
 # Build Process
