@@ -3,6 +3,7 @@ import {
   setDefaultCredentials,
   CartoLayer,
   MAP_TYPES,
+  colorBins,
   fetchMap,
   API_VERSIONS,
 } from "@deck.gl/carto";
@@ -16,6 +17,7 @@ import { Deck } from "@deck.gl/core";
 import DeckGL from "@deck.gl/react";
 // import * as Cesium from "cesium";
 import { CesiumIonLoader } from "@loaders.gl/3d-tiles";
+import { Easing } from "@tweenjs/tween.js";
 
 export default function App() {
   const cartoMapId = "9deb025f-45ea-4bb0-a2dc-74a97d2f1ce8";
@@ -35,7 +37,7 @@ export default function App() {
       },
     },
     operation: "terrain+draw",
-    extensions: [new TerrainExtension()],
+    // extensions: [new TerrainExtension()],
   });
 
   // const geoExtenderLayer = new deck.GeoJsonLayer({
@@ -58,18 +60,67 @@ export default function App() {
   //   operation: "terrain+draw",
   // });
 
+  const FADE_IN_COLOR = {
+    getFillColor: {
+      duration: 1000,
+      easing: Easing.Cubic.In,
+      enter: (value) => {
+        // console.log(value);
+        return [value[0], value[1], value[2], 0];
+      },
+    },
+  };
+
+  function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return [
+      parseInt(result[1], 16),
+      parseInt(result[2], 16),
+      parseInt(result[3], 16),
+    ];
+  }
+
+  function lerp(a, b, p) {
+    return a + (b - a) * p;
+  }
+
   const cartoLayer = new CartoLayer({
     type: MAP_TYPES.QUERY,
     connection: "carto_dw",
-    data: "SELECT b.* FROM carto-demo-data.demo_tables.manhattan_pluto_data b,carto-dw-ac-zp3r15zi.shared.CompostNYC c WHERE ST_DWithin(b.geom, c.geom, 81);",
+    data: `
+      SELECT
+        b.*,
+        ST_DISTANCE(b.geom, c.geom) AS distance
+      FROM
+        carto-demo-data.demo_tables.manhattan_pluto_data b,
+        carto-dw-ac-zp3r15zi.shared.CompostNYC c
+      WHERE
+        ST_DWithin(b.geom, c.geom, 80*3+1)
+      AND
+        b.bldgarea < 300000;`,
     pointRadiusMinPixels: 2,
     getLineColor: [0, 0, 0, 200],
-    getFillColor: [238, 77, 90],
+    // getFillColor: [238, 77, 90],
+    getFillColor: colorBins({
+      attr: "distance",
+      domain: [
+        lerp(80, 80 * 3, 0 / 5),
+        lerp(80, 80 * 3, 1 / 5),
+        lerp(80, 80 * 3, 2 / 5),
+        lerp(80, 80 * 3, 3 / 5),
+        lerp(80, 80 * 3, 4 / 5),
+      ],
+      colors: ["#feebe2", "#fbb4b9", "#f768a1", "#c51b8a", "#7a0177"].map(
+        hexToRgb
+      ),
+    }),
+    opacity: 0.25,
+    transitions: FADE_IN_COLOR,
     lineWidthMinPixels: 1,
-    // extensions: [new TerrainExtension()],
+    extensions: [new TerrainExtension()],
   });
 
-  const layers = [tile3DLayer];
+  const layers = [tile3DLayer, cartoLayer];
 
   // Connect to CARTO API
   setDefaultCredentials({
@@ -131,7 +182,7 @@ export default function App() {
   return (
     <>
       {/* <div id="cesiumContainer" style={{ height: "80vh" }}></div> */}
-      <DeckGL viewState={viewState} layers={layers} />;
+      <DeckGL initialViewState={viewState} controller={true} layers={layers} />;
     </>
   );
 }
