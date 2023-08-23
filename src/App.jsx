@@ -117,17 +117,39 @@ export default function App() {
         <div>
           <div
             className="distance heading"
-            style={{ fontSize: "0.75rem", fontWeight: "bold" }}
+            style={{
+              fontSize: "0.75rem",
+              fontWeight: "bold",
+              paddingBottom: "16px",
+              color: "white",
+            }}
           >
             Distance from Compost
           </div>
         </div>
-        <br />
-        <span className="distance">1 block</span>
-        <br />
-        <span className="distance">3 blocks</span>
-        <br />
-        <span className="distance">5 blocks</span>
+        <div className="legend-item">
+          <div
+            className="color-circle"
+            style={{
+              backgroundColor: "#fbb4b9",
+            }}
+          ></div>
+          <span className="distance">1 block</span>
+        </div>
+        <div className="legend-item">
+          <div
+            className="color-circle"
+            style={{ backgroundColor: "#f768a1" }}
+          ></div>
+          <span className="distance">3 blocks</span>
+        </div>
+        <div className="legend-item">
+          <div
+            className="color-circle"
+            style={{ backgroundColor: "#7a0177" }}
+          ></div>
+          <span className="distance">5 blocks</span>
+        </div>
       </div>
     </>
   );
