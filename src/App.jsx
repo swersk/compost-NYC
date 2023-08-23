@@ -26,7 +26,7 @@ export default function App() {
     latitude: 40.7639,
     zoom: 15,
     pitch: 60,
-    bearing: 30,
+    bearing: 28,
   });
 
   const tile3DLayer = new Tile3DLayer({
