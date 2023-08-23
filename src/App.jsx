@@ -22,11 +22,11 @@ import { Easing } from "@tweenjs/tween.js";
 export default function App() {
   const cartoMapId = "9deb025f-45ea-4bb0-a2dc-74a97d2f1ce8";
   const [viewState, setViewState] = useState({
-    longitude: -73.9769,
-    latitude: 40.7669,
+    longitude: -73.979,
+    latitude: 40.7639,
     zoom: 15,
     pitch: 60,
-    bearing: 0,
+    bearing: 30,
   });
 
   const tile3DLayer = new Tile3DLayer({
