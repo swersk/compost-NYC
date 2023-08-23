@@ -14,4 +14,31 @@
   -webkit-text-size-adjust: 100%;
 }
 
+#map {
+  z-index: 1;
+}
 
+#legend {
+  z-index: 2;
+  position: fixed;
+  background-color: #2c3032;
+  text-align: center;
+  left: 20px;
+  width: 84px;
+  bottom: 48px;
+  display: block;
+  transform: none;
+  color: #fff;
+  padding: 12px;
+  border-radius: 3px;
+}
+
+.distance {
+  text-align: center;
+  font-size: 0.875rem;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.429;
+
+  letter-spacing: 0.018em;
+}

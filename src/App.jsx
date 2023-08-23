@@ -37,35 +37,13 @@ export default function App() {
       },
     },
     operation: "terrain+draw",
-    // extensions: [new TerrainExtension()],
   });
-
-  // const geoExtenderLayer = new deck.GeoJsonLayer({
-  //   data: https://,
-  //   getFillColor: [254, 246, 181]
-
-  // })
-  // const tile3DLayer = new Tile3DLayer({
-  //   data: "https://tile.googleapis.com/v1/3dtiles/root.json?key=${apiKey}",
-  //   loader: CesiumIonLoader,
-  //   loadOptions: {
-  //     fetch: {
-  //       headers: { "X-GOOG-API-KEY": import.meta.env.VITE_GOOGLE_API_KEY },
-  //     },
-  //     "cesium-ion": {
-  //       accessToken:
-  //         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMmQ5MjM0Ni1hOGU1LTQ5NzEtODc5My0wYWNiNzI2NGZhZmIiLCJpZCI6MTYxNzM1LCJpYXQiOjE2OTI2NTAxNTJ9.Hhq-lnvsRVvAHB26aNzbfN_6KVrB0NvlRmyNj-wK8pY",
-  //     },
-  //   },
-  //   operation: "terrain+draw",
-  // });
 
   const FADE_IN_COLOR = {
     getFillColor: {
       duration: 1000,
       easing: Easing.Cubic.In,
       enter: (value) => {
-        // console.log(value);
         return [value[0], value[1], value[2], 0];
       },
     },
@@ -95,9 +73,7 @@ export default function App() {
         carto-demo-data.demo_tables.manhattan_pluto_data b,
         carto-dw-ac-zp3r15zi.shared.CompostNYC c
       WHERE
-        ST_DWithin(b.geom, c.geom, 80*3+1)
-      AND
-        b.bldgarea < 300000;`,
+        ST_DWithin(b.geom, c.geom, 80*3+1);`,
     pointRadiusMinPixels: 2,
     getLineColor: [0, 0, 0, 200],
     // getFillColor: [238, 77, 90],
@@ -114,7 +90,7 @@ export default function App() {
         hexToRgb
       ),
     }),
-    opacity: 0.25,
+    opacity: 0.2,
     transitions: FADE_IN_COLOR,
     lineWidthMinPixels: 1,
     extensions: [new TerrainExtension()],
@@ -129,60 +105,30 @@ export default function App() {
       "eyJhbGciOiJIUzI1NiJ9.eyJhIjoiYWNfenAzcjE1emkiLCJqdGkiOiJlODVkYWIzNiJ9.MiFHlhzZcIGqfiWNIU9440II6-p2fgKe6PJOKlX64x4",
   });
 
-  // useEffect(() => {
-  //   // CARTO layer
-  //   fetchMap({ cartoMapId }).then((map) => {
-  //     const deck = new Deck(map);
-
-  //     // Add the CARTO layer to the deck
-  //     //  deck.setProps({ layers: [cartoLayer] });
-  //     // });
-  //   });
-
-  //   // Cesium
-  //   const cesiumToken = import.meta.env.VITE_CESIUM_TOKEN;
-  //   Cesium.Ion.defaultAccessToken = cesiumToken;
-
-  //   const viewer = new Cesium.Viewer("cesiumContainer", {
-  //     imageryProvider: false,
-  //     baseLayerPicker: false,
-  //     requestRenderMode: true,
-  //   });
-
-  //   // Google 3D Tiles
-  //   const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-  //   const tileset = viewer.scene.primitives.add(
-  //     new Cesium.Cesium3DTileset({
-  //       url: `https://tile.googleapis.com/v1/3dtiles/root.json?key=${apiKey}`,
-  //       showCreditsOnScreen: true, // display attribution
-  //     })
-  //   );
-
-  //   viewer.scene.globe.show = false;
-
-  //   // Flyover
-  //   const centralPark = Cesium.Cartesian3.fromDegrees(-73.9769, 40.7669, 900);
-  //   const wallStreet = Cesium.Cartesian3.fromDegrees(-74.0134, 40.7056, 800);
-
-  //   viewer.camera.flyTo({
-  //     destination: centralPark,
-  //     duration: 0.2,
-  //     orientation: {
-  //       heading: Cesium.Math.toRadians(31),
-  //       pitch: Cesium.Math.toRadians(-30),
-  //       roll: 0,
-  //     },
-  //   });
-
-  //   return () => {
-  //     viewer.destroy();
-  //   };
-  // }, []);
-
   return (
     <>
-      {/* <div id="cesiumContainer" style={{ height: "80vh" }}></div> */}
-      <DeckGL initialViewState={viewState} controller={true} layers={layers} />;
+      <DeckGL
+        id="map"
+        initialViewState={viewState}
+        controller={true}
+        layers={layers}
+      />
+      <div id="legend">
+        <div>
+          <div
+            className="distance heading"
+            style={{ fontSize: "0.75rem", fontWeight: "bold" }}
+          >
+            Distance from Compost
+          </div>
+        </div>
+        <br />
+        <span className="distance">1 block</span>
+        <br />
+        <span className="distance">3 blocks</span>
+        <br />
+        <span className="distance">5 blocks</span>
+      </div>
     </>
   );
 }
