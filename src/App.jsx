@@ -80,15 +80,11 @@ export default function App() {
     getFillColor: colorBins({
       attr: "distance",
       domain: [
-        lerp(80, 80 * 3, 0 / 5),
-        lerp(80, 80 * 3, 1 / 5),
-        lerp(80, 80 * 3, 2 / 5),
-        lerp(80, 80 * 3, 3 / 5),
-        lerp(80, 80 * 3, 4 / 5),
+        lerp(80, 80 * 3, 0 / 2),
+        lerp(80, 80 * 3, 1 / 2),
+        lerp(80, 80 * 3, 2 / 2),
       ],
-      colors: ["#feebe2", "#fbb4b9", "#f768a1", "#c51b8a", "#7a0177"].map(
-        hexToRgb
-      ),
+      colors: ["#fbb4b9", "#f768a1", "#7a0177"].map(hexToRgb),
     }),
     opacity: 0.2,
     transitions: FADE_IN_COLOR,
