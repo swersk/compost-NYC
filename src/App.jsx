@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   setDefaultCredentials,
   CartoLayer,
@@ -20,21 +20,34 @@ import { Easing } from "@tweenjs/tween.js";
 
 export default function App() {
   const cartoMapId = "9deb025f-45ea-4bb0-a2dc-74a97d2f1ce8";
-  const [orbiting, setOrbiting] = useState(false);
+  const zoomTimeoutRef = useRef(null);
+  const [zoomedOut, setZoomedOut] = useState(false);
 
   // Zoom-out
-  useEffect(() => {
-    const zoomOutDuration = 100099;
-    setTimeout(() => {
+  const handleZoom = () => {
+    setZoomedOut(true);
+    const zoomOutDuration = 40000;
+    zoomTimeoutRef.current = setTimeout(() => {
       setViewState((vs) => ({
         ...vs,
-        zoom: vs.zoom - 2,
+        zoom: vs.zoom - 1,
         transitionDuration: zoomOutDuration,
         transitionEasing: Easing.Quadratic.InOut,
-        onTransitionEnd: () => setViewState(viewState),
+        onTransitionEnd: () => setViewState({ ...vs }),
       }));
-    }, 1000);
-  }, []);
+    }, 2000);
+  };
+
+  const handlePause = () => {
+    setZoomedOut(false);
+
+    if (zoomTimeoutRef.current) {
+      clearTimeout(zoomTimeoutRef.current);
+      zoomTimeoutRef.current = null;
+    }
+
+    setViewState((vs) => ({ ...vs, transitionDuration: 0 }));
+  };
 
   const [viewState, setViewState] = useState({
     longitude: -73.979,
@@ -129,9 +142,9 @@ export default function App() {
           <div
             className="distance heading"
             style={{
-              fontSize: "0.75rem",
+              fontSize: "0.90rem",
               fontWeight: "bold",
-              paddingBottom: "16px",
+              paddingBottom: "20px",
               color: "white",
             }}
           >
@@ -160,6 +173,35 @@ export default function App() {
             style={{ backgroundColor: "#7a0177" }}
           ></div>
           <span className="distance">5 blocks</span>
+        </div>
+        <div className="legend-item">
+          <div
+            className="color-circle"
+            style={{ backgroundColor: "grey" }}
+          ></div>
+          <span className="distance"> &gt; 6 blocks</span>
+        </div>
+        <div
+          style={{
+            fontSize: "12px",
+            color: "grey",
+            paddingTop: "8px",
+            paddingBottom: "14px",
+          }}
+        >
+          <em>*Blocks are street length; ~264ft.</em>
+        </div>
+        <div>
+          <button
+            style={{
+              padding: "7px",
+              margin: "8px",
+              border: "0.5px solid white",
+            }}
+            onClick={zoomedOut ? handlePause : handleZoom}
+          >
+            {zoomedOut ? "Pause" : "Zoom out"}
+          </button>
         </div>
       </div>
     </>
