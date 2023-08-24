@@ -1,15 +1,13 @@
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 const handler = async (req, res) => {
-  const { username } = req.query;
-
   let url = `https://tile.googleapis.com/v1/3dtiles/root.json`;
 
   try {
     const response = await fetch(url, {
       headers: {
         Accept: "application/json",
-        "X-GOOG-API-KEY": process.env.GOOGLE_API_KEY,
+        "X-GOOG-API-KEY": import.meta.env.VITE_GOOGLE_API_KEY,
       },
     });
 

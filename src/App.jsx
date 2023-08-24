@@ -92,7 +92,6 @@ export default function App() {
         AND b.landuse <> '09';`,
     pointRadiusMinPixels: 2,
     getLineColor: [0, 0, 0, 200],
-    // getFillColor: [238, 77, 90],
     getFillColor: colorBins({
       attr: "distance",
       domain: [
