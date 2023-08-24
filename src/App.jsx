@@ -73,7 +73,8 @@ export default function App() {
         carto-demo-data.demo_tables.manhattan_pluto_data b,
         carto-dw-ac-zp3r15zi.shared.CompostNYC c
       WHERE
-        ST_DWithin(b.geom, c.geom, 80*3+1);`,
+        ST_DWithin(b.geom, c.geom, 80*3+1)
+        AND b.landuse <> '09';`,
     pointRadiusMinPixels: 2,
     getLineColor: [0, 0, 0, 200],
     // getFillColor: [238, 77, 90],
