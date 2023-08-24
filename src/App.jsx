@@ -118,24 +118,22 @@ export default function App() {
     extensions: [new TerrainExtension()],
   });
 
-  const compostLayer = new CartoLayer({
-    type: MAP_TYPES.QUERY,
-    connection: "carto_dw",
-    data: `
-    SELECT *
-    FROM carto-dw-ac-zp3r15zi.shared.CompostNYC`,
-    getRadius: 10,
-    getFillColor: [255, 140, 0],
-    pointRadiusMinPixels: 2,
-    opacity: 0.8,
-    pickable: true,
-    autoHighlight: true,
-    hightlightColor: [60, 60, 69],
-    onClick: (info) => console.log(info.object),
-  });
+  // const compostLayer = new CartoLayer({
+  //   type: MAP_TYPES.QUERY,
+  //   connection: "carto_dw",
+  //   data: `
+  //   SELECT *
+  //   FROM carto-dw-ac-zp3r15zi.shared.CompostNYC`,
+  //   pointRadiusMinPixels: 2,
+  //   getLineColor: [0, 0, 0, 200],
+  //   getFillColor: [255, 140, 0],
+  //   getRadius: 10,
+  //   opacity: 0.8,
+  //   hightlightColor: [60, 60, 69],
+  //   extensions: [new TerrainExtension()],
+  // });
 
-  // const layers = [tile3DLayer, cartoLayer, compostLayer];
-  const layers = [tile3DLayer, compostLayer];
+  const layers = [tile3DLayer, cartoLayer];
 
   // Connect to CARTO API
   setDefaultCredentials({
