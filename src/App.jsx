@@ -23,10 +23,9 @@ export default function App() {
   const zoomTimeoutRef = useRef(null);
   const [zoomedOut, setZoomedOut] = useState(false);
 
-  // Zoom-out
   const handleZoom = () => {
     setZoomedOut(true);
-    const zoomOutDuration = 40000;
+    const zoomOutDuration = 40500;
     zoomTimeoutRef.current = setTimeout(() => {
       setViewState((vs) => ({
         ...vs,
@@ -45,7 +44,6 @@ export default function App() {
       clearTimeout(zoomTimeoutRef.current);
       zoomTimeoutRef.current = null;
     }
-
     setViewState((vs) => ({ ...vs, transitionDuration: 0 }));
   };
 
