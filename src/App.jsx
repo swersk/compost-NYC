@@ -15,12 +15,27 @@ import {
 } from "@deck.gl/extensions";
 import { Deck } from "@deck.gl/core";
 import DeckGL from "@deck.gl/react";
-// import * as Cesium from "cesium";
 import { CesiumIonLoader } from "@loaders.gl/3d-tiles";
 import { Easing } from "@tweenjs/tween.js";
 
 export default function App() {
   const cartoMapId = "9deb025f-45ea-4bb0-a2dc-74a97d2f1ce8";
+  const [orbiting, setOrbiting] = useState(false);
+
+  // Zoom-out
+  useEffect(() => {
+    const zoomOutDuration = 100099;
+    setTimeout(() => {
+      setViewState((vs) => ({
+        ...vs,
+        zoom: vs.zoom - 2,
+        transitionDuration: zoomOutDuration,
+        transitionEasing: Easing.Quadratic.InOut,
+        onTransitionEnd: () => setViewState(viewState),
+      }));
+    }, 1000);
+  }, []);
+
   const [viewState, setViewState] = useState({
     longitude: -73.979,
     latitude: 40.7639,
