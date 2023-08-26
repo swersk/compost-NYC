@@ -42,7 +42,7 @@ WHERE
 
 ## Phase 6: Ship!</br>
 
-👉 Live link [here](https://compost-hj4rxzdb3-swersk.vercel.app/)
+👉 Live link [here](https://compost-nyc.vercel.app/)
 
 # Comments? Questions? Feedback? Message me!</br>
 
