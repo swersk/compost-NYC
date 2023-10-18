@@ -6,13 +6,13 @@ CompostNYC is an immersive 3D visualization of building distance from a compost 
 
 # Build Process
 
-## Phase 1: Data Collection</br>
+## Phase 1: Data Collection 
 
 • Obtain data for composite site location data and NYC buildingdata</br>
 
 • Data sources: NYC OpenData and BigQuery>PLUTO from CARTO data warehouse</br>
 
-## Phase 2: Spatial Analyses</br>
+## Phase 2: Spatial Analyses 
 
 • Goal: Determine which buildings are within various distances of the nearest compost bin.</br>
 
@@ -28,22 +28,22 @@ WHERE
     ST_DWithin(b.geom, c.geom, 400);
 ```
 
-## Phase 3: Add a CARTO Layer</br>
+## Phase 3: Add a CARTO Layer 
 
 • To visualize data using the CARTO API. </br>
 
-## Phase 4: Render the 3D Map</br>
+## Phase 4: Render the 3D Map 
 
 • Connect to Google Tiles API and render the photorealistic tiles on deck.gl.</br>
 
-## Phase 5: Styling</br>
+## Phase 5: Styling 
 
 • After getting the data via CARTO API, color-code the buildings accordingly.</br>
 
-## Phase 6: Ship!</br>
+## Phase 6: Ship! 
 
 👉 Live link [here](https://compost-nyc.vercel.app/)
 
-# Comments? Questions? Feedback? Message me!</br>
+## Comments? Questions? Feedback? Message me! 
 
 Lauren.Swersky@Gmail.com
